@@ -5,6 +5,7 @@ import com.printingservice.dtos.auth.request.SignupRQ;
 import com.printingservice.dtos.auth.response.LoginRP;
 import com.printingservice.dtos.auth.response.SignupRP;
 import com.printingservice.services.AuthService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,12 +19,12 @@ public class AuthController {
     private final AuthService authService;
 
     @PostMapping("/signup")
-    public SignupRP signup(@RequestBody SignupRQ signupRQ) {
+    public SignupRP signup(@Valid @RequestBody SignupRQ signupRQ) {
         return authService.signup(signupRQ);
     }
 
     @PostMapping("/login")
-    public LoginRP login(@RequestBody LoginRQ loginRQ) {
+    public LoginRP login(@Valid @RequestBody LoginRQ loginRQ) {
         return authService.login(loginRQ);
     }
 }
