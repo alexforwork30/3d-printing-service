@@ -7,7 +7,6 @@ import com.printingservice.dtos.auth.response.SignupRP;
 import com.printingservice.enums.user.ERole;
 import com.printingservice.models.User;
 import com.printingservice.models.UserCredential;
-import com.printingservice.repositories.UserCredentialRepository;
 import com.printingservice.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -24,7 +23,6 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class AuthService {
     private final UserRepository userRepository;
-    private final UserCredentialRepository userCredentialRepository;
     private final JwtService jwtService;
     private final PasswordEncoder passwordEncoder;
     private final AuthenticationManager authenticationManager;
