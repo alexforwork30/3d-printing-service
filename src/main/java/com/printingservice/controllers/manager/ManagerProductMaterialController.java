@@ -1,6 +1,5 @@
 package com.printingservice.controllers.manager;
 
-import com.printingservice.annotations.api.ManagerRestController;
 import com.printingservice.dtos.productmaterial.request.UpdateProductMaterialRQ;
 import com.printingservice.models.ProductMaterial;
 import com.printingservice.services.ProductMaterialService;
@@ -9,8 +8,8 @@ import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
-@ManagerRestController
-@RequestMapping("/product-materials")
+@RestController
+@RequestMapping("${app.api-prefix.manager}/product-materials")
 @RequiredArgsConstructor
 public class ManagerProductMaterialController {
   private final ProductMaterialService productMaterialService;

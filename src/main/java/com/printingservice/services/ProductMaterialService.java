@@ -31,6 +31,7 @@ public class ProductMaterialService {
         .findById(id)
         .map(
             productMaterial -> {
+              modelMapper.getConfiguration().setSkipNullEnabled(true);
               modelMapper.map(updateProductMaterialRQ, productMaterial);
               return productMaterialRepository.save(productMaterial);
             })

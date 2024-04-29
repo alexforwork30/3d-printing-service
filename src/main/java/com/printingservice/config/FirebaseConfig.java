@@ -13,7 +13,7 @@ import org.springframework.core.io.ClassPathResource;
 @Configuration
 @RequiredArgsConstructor
 public class FirebaseConfig {
-  @Value("${printingservice.firebase.bucket-name}")
+  @Value("${app.firebase.bucket-name}")
   private String bucketName;
 
   @Bean

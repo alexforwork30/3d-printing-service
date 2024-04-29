@@ -14,10 +14,10 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class JwtService {
-  @Value("${printingservice.security.jwt.secret}")
+  @Value("${app.security.jwt.secret}")
   private String secretKey;
 
-  @Value("${printingservice.security.jwt.expiration}")
+  @Value("${app.security.jwt.expiration}")
   private Long expiration;
 
   public String generateToken(Authentication authentication) {

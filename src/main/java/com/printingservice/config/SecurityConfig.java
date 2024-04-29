@@ -64,11 +64,11 @@ public class SecurityConfig {
                     .requestMatchers("/pings/**")
                     .permitAll()
                     .requestMatchers("/manager/**")
-                    .hasRole(ERole.MANAGER.name())
+                    .hasAuthority(ERole.MANAGER.name())
                     .requestMatchers("/employee/**")
-                    .hasRole(ERole.EMPLOYEE.name())
+                    .hasAuthority(ERole.EMPLOYEE.name())
                     .requestMatchers("/customer/**")
-                    .hasRole(ERole.CUSTOMER.name())
+                    .hasAuthority(ERole.CUSTOMER.name())
                     .anyRequest()
                     .authenticated());
 
