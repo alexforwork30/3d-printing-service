@@ -13,21 +13,21 @@ import org.hibernate.annotations.OnDeleteAction;
 @Builder
 @EqualsAndHashCode(callSuper = true)
 public class ProductOption extends Base {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
 
-    @Column(length = 50, nullable = false)
-    private String color;
+  @Column(length = 50, nullable = false)
+  private String color;
 
-    @Column(nullable = false)
-    private Double price;
+  @Column(nullable = false)
+  private Double price;
 
-    @Column(nullable = false)
-    private Integer stockQuantity;
+  @Column(nullable = false)
+  private Integer stockQuantity;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "product_id", nullable = false)
-    @OnDelete(action = OnDeleteAction.RESTRICT)
-    private Product product;
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "product_id", nullable = false)
+  @OnDelete(action = OnDeleteAction.RESTRICT)
+  private Product product;
 }

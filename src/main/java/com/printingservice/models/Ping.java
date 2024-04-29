@@ -11,10 +11,9 @@ import lombok.*;
 @Builder
 @EqualsAndHashCode(callSuper = true)
 public class Ping extends Base {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
 
-    @Column
-    private String message;
+  @Column private String message;
 }

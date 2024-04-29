@@ -16,15 +16,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/auth")
 @RequiredArgsConstructor
 public class AuthController {
-    private final AuthService authService;
+  private final AuthService authService;
 
-    @PostMapping("/signup")
-    public SignupRP signup(@Valid @RequestBody SignupRQ signupRQ) {
-        return authService.signup(signupRQ);
-    }
+  @PostMapping("/signup")
+  public SignupRP signup(@Valid @RequestBody SignupRQ signupRQ) {
+    return authService.signup(signupRQ);
+  }
 
-    @PostMapping("/login")
-    public LoginRP login(@Valid @RequestBody LoginRQ loginRQ) {
-        return authService.login(loginRQ);
-    }
+  @PostMapping("/login")
+  public LoginRP login(@Valid @RequestBody LoginRQ loginRQ) {
+    return authService.login(loginRQ);
+  }
 }

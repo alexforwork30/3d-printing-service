@@ -11,6 +11,6 @@ import lombok.NoArgsConstructor;
 @Data
 @Builder
 public class LoginRP {
-    private String token;
-    private ERole role;
+  private String token;
+  private ERole role;
 }

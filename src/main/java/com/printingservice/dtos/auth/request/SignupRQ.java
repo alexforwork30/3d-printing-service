@@ -10,29 +10,22 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 public class SignupRQ {
-    @NotBlank
-    private String fullName;
+  @NotBlank private String fullName;
 
-    @NotBlank
-    private String email;
+  @NotBlank private String email;
 
-    @NotBlank
-    private String phoneNumber;
+  @NotBlank private String phoneNumber;
 
-    @NotBlank
-    private String address;
+  @NotBlank private String address;
 
-    @NotNull
-    private UserCredential userCredential;
+  @NotNull private UserCredential userCredential;
 
-    @NoArgsConstructor
-    @AllArgsConstructor
-    @Data
-    public static class UserCredential {
-        @NotBlank
-        private String username;
+  @NoArgsConstructor
+  @AllArgsConstructor
+  @Data
+  public static class UserCredential {
+    @NotBlank private String username;
 
-        @NotBlank
-        private String password;
-    }
+    @NotBlank private String password;
+  }
 }

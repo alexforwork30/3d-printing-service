@@ -9,9 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 public class LoginRQ {
-    @NotBlank
-    private String username;
-    
-    @NotBlank
-    private String password;
+  @NotBlank private String username;
+
+  @NotBlank private String password;
 }

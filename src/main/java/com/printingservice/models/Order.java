@@ -16,34 +16,34 @@ import org.hibernate.annotations.OnDeleteAction;
 @Builder
 @EqualsAndHashCode(callSuper = true)
 public class Order extends Base {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
 
-    @Column(nullable = false)
-    @Enumerated(EnumType.STRING)
-    private EOrderStatus orderStatus;
+  @Column(nullable = false)
+  @Enumerated(EnumType.STRING)
+  private EOrderStatus orderStatus;
 
-    @Column(nullable = false)
-    @Enumerated(EnumType.STRING)
-    private EOrderPaymentStatus paymentStatus;
+  @Column(nullable = false)
+  @Enumerated(EnumType.STRING)
+  private EOrderPaymentStatus paymentStatus;
 
-    @Column(nullable = false)
-    @Enumerated(EnumType.STRING)
-    private EOrderPaymentMethod paymentMethod;
+  @Column(nullable = false)
+  @Enumerated(EnumType.STRING)
+  private EOrderPaymentMethod paymentMethod;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", nullable = false)
-    @OnDelete(action = OnDeleteAction.RESTRICT)
-    private User user;
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "user_id", nullable = false)
+  @OnDelete(action = OnDeleteAction.RESTRICT)
+  private User user;
 
-    @PrePersist
-    public void prePersist() {
-        if (this.orderStatus == null) {
-            this.orderStatus = EOrderStatus.PENDING;
-        }
-        if (this.paymentStatus == null) {
-            this.paymentStatus = EOrderPaymentStatus.PENDING;
-        }
+  @PrePersist
+  public void prePersist() {
+    if (this.orderStatus == null) {
+      this.orderStatus = EOrderStatus.PENDING;
     }
+    if (this.paymentStatus == null) {
+      this.paymentStatus = EOrderPaymentStatus.PENDING;
+    }
+  }
 }

@@ -8,13 +8,13 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class PingService {
-    private final PingRepository pingRepository;
+  private final PingRepository pingRepository;
 
-    public Ping createPing(Ping ping) {
-        return pingRepository.save(ping);
-    }
+  public Ping createPing(Ping ping) {
+    return pingRepository.save(ping);
+  }
 
-    public Ping findByMessage(String message) {
-        return pingRepository.findByMessage(message);
-    }
+  public Ping findByMessage(String message) {
+    return pingRepository.findByMessage(message);
+  }
 }

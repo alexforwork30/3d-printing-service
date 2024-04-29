@@ -11,13 +11,12 @@ import lombok.*;
 @Builder
 @EqualsAndHashCode(callSuper = true)
 public class ProductCategory extends Base {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
 
-    @Column(length = 100, nullable = false)
-    private String name;
+  @Column(length = 100, nullable = false)
+  private String name;
 
-    @Column
-    private String description;
+  @Column private String description;
 }

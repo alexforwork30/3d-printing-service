@@ -13,15 +13,15 @@ import org.hibernate.annotations.OnDeleteAction;
 @Builder
 @EqualsAndHashCode(callSuper = true)
 public class ProductMediaReference extends Base {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
 
-    @Column(nullable = false)
-    private String mediaUrl;
+  @Column(nullable = false)
+  private String mediaUrl;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "product_id", nullable = false)
-    @OnDelete(action = OnDeleteAction.RESTRICT)
-    private Product product;
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "product_id", nullable = false)
+  @OnDelete(action = OnDeleteAction.RESTRICT)
+  private Product product;
 }

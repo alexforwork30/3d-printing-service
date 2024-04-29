@@ -10,5 +10,5 @@ import lombok.NoArgsConstructor;
 @Data
 @Builder
 public class SignupRP {
-    private String username;
+  private String username;
 }
