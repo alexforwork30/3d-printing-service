@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class UpdateProductMaterialRQ {
+public class UpdateProductMaterialReq {
   private String name;
   private String strength;
   private String flexibility;

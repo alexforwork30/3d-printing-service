@@ -1,5 +1,6 @@
 package com.printingservice.dtos.auth.response;
 
+import com.printingservice.enums.user.ERole;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -9,6 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 @Builder
-public class SignupRP {
-  private String username;
+public class LoginRes {
+  private String token;
+  private ERole role;
 }

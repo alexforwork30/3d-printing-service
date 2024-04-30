@@ -1,18 +1,12 @@
 package com.printingservice.dtos.common.response;
 
-import java.util.Date;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-@Builder
-public class ErrorMessage {
-  private Integer statusCode;
-  private Date timestamp;
+public class TextMessageRes {
   private String message;
-  private String description;
 }

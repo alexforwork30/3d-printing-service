@@ -1,7 +1,8 @@
 package com.printingservice.components;
 
+
 import com.printingservice.constants.ErrorConstants;
-import com.printingservice.dtos.common.response.ErrorMessage;
+import com.printingservice.dtos.common.response.ErrorMessageRes;
 import java.util.Date;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.env.Environment;
@@ -16,11 +17,11 @@ public class HandleControllerException {
   private final Environment environment;
 
   @ExceptionHandler(Exception.class)
-  public ResponseEntity<ErrorMessage> handleException(Exception exception, WebRequest request) {
+  public ResponseEntity<ErrorMessageRes> handleException(Exception exception, WebRequest request) {
     if (environment.getActiveProfiles()[0].equals("prod")) {
       return ResponseEntity.status(500)
           .body(
-              ErrorMessage.builder()
+              ErrorMessageRes.builder()
                   .statusCode(500)
                   .timestamp(new Date())
                   .message(ErrorConstants.ERROR_MESSAGE)
@@ -29,7 +30,7 @@ public class HandleControllerException {
     }
     return ResponseEntity.status(500)
         .body(
-            ErrorMessage.builder()
+            ErrorMessageRes.builder()
                 .statusCode(500)
                 .timestamp(new Date())
                 .message(exception.getMessage())

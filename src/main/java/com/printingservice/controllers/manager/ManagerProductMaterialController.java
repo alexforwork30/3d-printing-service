@@ -1,6 +1,6 @@
 package com.printingservice.controllers.manager;
 
-import com.printingservice.dtos.productmaterial.request.UpdateProductMaterialRQ;
+import com.printingservice.dtos.productmaterial.request.UpdateProductMaterialReq;
 import com.printingservice.models.ProductMaterial;
 import com.printingservice.services.ProductMaterialService;
 import jakarta.validation.Valid;
@@ -32,8 +32,8 @@ public class ManagerProductMaterialController {
   @PatchMapping("/{id}")
   public ProductMaterial updateById(
       @PathVariable("id") Long id,
-      @Valid @RequestBody UpdateProductMaterialRQ updateProductMaterialRQ) {
-    return productMaterialService.updateById(id, updateProductMaterialRQ);
+      @Valid @RequestBody UpdateProductMaterialReq updateProductMaterialReq) {
+    return productMaterialService.updateById(id, updateProductMaterialReq);
   }
 
   @DeleteMapping("/{id}")

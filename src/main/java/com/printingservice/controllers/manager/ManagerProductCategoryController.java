@@ -1,6 +1,6 @@
 package com.printingservice.controllers.manager;
 
-import com.printingservice.dtos.productcategory.request.UpdateProductCategoryRQ;
+import com.printingservice.dtos.productcategory.request.UpdateProductCategoryReq;
 import com.printingservice.models.ProductCategory;
 import com.printingservice.services.ProductCategoryService;
 import jakarta.validation.Valid;
@@ -32,8 +32,8 @@ public class ManagerProductCategoryController {
   @PatchMapping("/{id}")
   public ProductCategory updateById(
       @PathVariable("id") Long id,
-      @Valid @RequestBody UpdateProductCategoryRQ updateProductCategoryRQ) {
-    return productCategoryService.updateById(id, updateProductCategoryRQ);
+      @Valid @RequestBody UpdateProductCategoryReq updateProductCategoryReq) {
+    return productCategoryService.updateById(id, updateProductCategoryReq);
   }
 
   @DeleteMapping("/{id}")

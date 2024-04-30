@@ -1,8 +1,9 @@
 package com.printingservice.services;
 
-import com.printingservice.dtos.productcategory.request.UpdateProductCategoryRQ;
+import com.printingservice.dtos.productcategory.request.UpdateProductCategoryReq;
 import com.printingservice.models.ProductCategory;
 import com.printingservice.repositories.ProductCategoryRepository;
+import jakarta.persistence.EntityNotFoundException;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -19,23 +20,25 @@ public class ProductCategoryService {
   }
 
   public ProductCategory findById(Long id) {
-    return productCategoryRepository.findById(id).orElse(null);
+    return productCategoryRepository
+        .findById(id)
+        .orElseThrow(() -> new EntityNotFoundException("ProductCategory not found"));
   }
 
   public List<ProductCategory> findAll() {
     return productCategoryRepository.findAll();
   }
 
-  public ProductCategory updateById(Long id, UpdateProductCategoryRQ updateProductCategoryRQ) {
+  public ProductCategory updateById(Long id, UpdateProductCategoryReq updateProductCategoryReq) {
     return productCategoryRepository
         .findById(id)
         .map(
             productCategory -> {
               modelMapper.getConfiguration().setSkipNullEnabled(true);
-              modelMapper.map(updateProductCategoryRQ, productCategory);
+              modelMapper.map(updateProductCategoryReq, productCategory);
               return productCategoryRepository.save(productCategory);
             })
-        .orElse(null);
+        .orElseThrow(() -> new EntityNotFoundException("ProductCategory not found"));
   }
 
   public void deleteById(Long id) {

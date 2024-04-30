@@ -1,8 +1,9 @@
 package com.printingservice.services;
 
-import com.printingservice.dtos.productmaterial.request.UpdateProductMaterialRQ;
+import com.printingservice.dtos.productmaterial.request.UpdateProductMaterialReq;
 import com.printingservice.models.ProductMaterial;
 import com.printingservice.repositories.ProductMaterialRepository;
+import jakarta.persistence.EntityNotFoundException;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -19,23 +20,25 @@ public class ProductMaterialService {
   }
 
   public ProductMaterial findById(Long id) {
-    return productMaterialRepository.findById(id).orElse(null);
+    return productMaterialRepository
+        .findById(id)
+        .orElseThrow(() -> new EntityNotFoundException("ProductMaterial not found"));
   }
 
   public List<ProductMaterial> findAll() {
     return productMaterialRepository.findAll();
   }
 
-  public ProductMaterial updateById(Long id, UpdateProductMaterialRQ updateProductMaterialRQ) {
+  public ProductMaterial updateById(Long id, UpdateProductMaterialReq updateProductMaterialReq) {
     return productMaterialRepository
         .findById(id)
         .map(
             productMaterial -> {
               modelMapper.getConfiguration().setSkipNullEnabled(true);
-              modelMapper.map(updateProductMaterialRQ, productMaterial);
+              modelMapper.map(updateProductMaterialReq, productMaterial);
               return productMaterialRepository.save(productMaterial);
             })
-        .orElse(null);
+        .orElseThrow(() -> new EntityNotFoundException("ProductMaterial not found"));
   }
 
   public void deleteById(Long id) {
