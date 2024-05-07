@@ -1,5 +1,6 @@
 package com.printingservice.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import lombok.*;
@@ -35,7 +36,11 @@ public class User extends Base {
       mappedBy = "user",
       cascade = CascadeType.ALL,
       fetch = FetchType.LAZY,
-      orphanRemoval = true)
+      orphanRemoval = true,
+      optional = false)
   @PrimaryKeyJoinColumn
+  @JsonIgnoreProperties(
+      ignoreUnknown = true,
+      value = {"user"})
   private UserCredential userCredential;
 }

@@ -1,5 +1,6 @@
 package com.printingservice.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.printingservice.enums.user.ERole;
 import jakarta.persistence.*;
 import java.util.Collection;
@@ -29,9 +30,12 @@ public class UserCredential extends Base implements UserDetails {
   @Enumerated(EnumType.STRING)
   private ERole role;
 
-  @OneToOne(fetch = FetchType.LAZY)
+  @OneToOne(optional = false)
   @MapsId
   @JoinColumn(name = "id")
+  @JsonIgnoreProperties(
+      ignoreUnknown = true,
+      value = {"userCredential"})
   private User user;
 
   @PrePersist

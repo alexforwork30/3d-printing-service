@@ -25,16 +25,6 @@ public class ProductService {
   private final ProductMaterialRepository productMaterialRepository;
   private final ModelMapper modelMapper;
 
-  public <T extends ProductDto> T findById(Long id, Boolean includeRelations) {
-    Product product =
-        productRepository
-            .findById(id)
-            .orElseThrow(() -> new EntityNotFoundException("Product not found"));
-
-    return modelMapper.map(
-        product, includeRelations ? ProductWithRelationsDto.class : ProductDto.class);
-  }
-
   public Product create(
       Long productCategoryId, Long productMaterialId, ModifyProductReq modifyProductReq) {
     ProductCategory productCategory =
@@ -60,6 +50,16 @@ public class ProductService {
         product ->
             modelMapper.map(
                 product, includeRelations ? ProductWithRelationsDto.class : ProductDto.class));
+  }
+
+  public <T extends ProductDto> T findById(Long id, Boolean includeRelations) {
+    Product product =
+        productRepository
+            .findById(id)
+            .orElseThrow(() -> new EntityNotFoundException("Product not found"));
+
+    return modelMapper.map(
+        product, includeRelations ? ProductWithRelationsDto.class : ProductDto.class);
   }
 
   public Product updateById(

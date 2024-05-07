@@ -29,9 +29,9 @@ public class ProductRequest extends Base {
   private EProductRequestStatus status;
 
   @ManyToOne(fetch = FetchType.LAZY)
-  @JoinColumn(name = "user_id", nullable = false)
+  @JoinColumn(name = "customer_id", nullable = false)
   @OnDelete(action = OnDeleteAction.RESTRICT)
-  private User user;
+  private User customer;
 
   @OneToOne(
       mappedBy = "productRequest",
