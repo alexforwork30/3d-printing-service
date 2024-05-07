@@ -32,7 +32,7 @@ public class Order extends Base {
   @Enumerated(EnumType.STRING)
   private EOrderPaymentMethod paymentMethod;
 
-  @ManyToOne(fetch = FetchType.LAZY)
+  @ManyToOne(fetch = FetchType.LAZY, optional = false)
   @JoinColumn(name = "user_id", nullable = false)
   @OnDelete(action = OnDeleteAction.RESTRICT)
   private User user;

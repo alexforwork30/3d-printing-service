@@ -28,7 +28,7 @@ public class ProductRequest extends Base {
   @Enumerated(EnumType.STRING)
   private EProductRequestStatus status;
 
-  @ManyToOne(fetch = FetchType.LAZY)
+  @ManyToOne(fetch = FetchType.LAZY, optional = false)
   @JoinColumn(name = "customer_id", nullable = false)
   @OnDelete(action = OnDeleteAction.RESTRICT)
   private User customer;

@@ -20,7 +20,7 @@ public class ProductMediaReference extends Base {
   @Column(nullable = false)
   private String mediaUrl;
 
-  @ManyToOne(fetch = FetchType.LAZY)
+  @ManyToOne(fetch = FetchType.LAZY, optional = false)
   @JoinColumn(name = "product_id", nullable = false)
   @OnDelete(action = OnDeleteAction.RESTRICT)
   private Product product;

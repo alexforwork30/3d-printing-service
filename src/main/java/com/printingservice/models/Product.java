@@ -45,12 +45,12 @@ public class Product extends Base {
   @OnDelete(action = OnDeleteAction.SET_NULL)
   private ProductRequest productRequest;
 
-  @ManyToOne(fetch = FetchType.LAZY)
+  @ManyToOne(fetch = FetchType.LAZY, optional = false)
   @JoinColumn(name = "product_category_id", nullable = false)
   @OnDelete(action = OnDeleteAction.RESTRICT)
   private ProductCategory productCategory;
 
-  @ManyToOne(fetch = FetchType.LAZY)
+  @ManyToOne(fetch = FetchType.LAZY, optional = false)
   @JoinColumn(name = "product_material_id", nullable = false)
   @OnDelete(action = OnDeleteAction.RESTRICT)
   private ProductMaterial productMaterial;

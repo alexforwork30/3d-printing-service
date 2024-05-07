@@ -26,7 +26,7 @@ public class ProductReview extends Base {
   @Max(5)
   private Integer rating;
 
-  @ManyToOne(fetch = FetchType.LAZY)
+  @ManyToOne(fetch = FetchType.LAZY, optional = false)
   @JoinColumn(name = "product_id", nullable = false)
   @OnDelete(action = OnDeleteAction.RESTRICT)
   private Product product;
