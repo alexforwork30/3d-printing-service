@@ -14,7 +14,7 @@
     <name>printingservice</name>
     <description>3D printing service</description>
     <properties>
-        <java.version>21</java.version>
+        <java.version>18</java.version>
     </properties>
     <dependencies>
         <!--Base-->
