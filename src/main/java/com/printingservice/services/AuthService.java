@@ -1,13 +1,14 @@
 package com.printingservice.services;
 
-import com.printingservice.dtos.auth.request.LoginRQ;
-import com.printingservice.dtos.auth.request.SignupRQ;
-import com.printingservice.dtos.auth.response.LoginRP;
-import com.printingservice.dtos.auth.response.SignupRP;
+import com.printingservice.dtos.auth.request.LoginReq;
+import com.printingservice.dtos.auth.request.SignupReq;
+import com.printingservice.dtos.auth.response.LoginRes;
+import com.printingservice.dtos.auth.response.SignupRes;
 import com.printingservice.enums.user.ERole;
 import com.printingservice.models.User;
 import com.printingservice.models.UserCredential;
 import com.printingservice.repositories.UserRepository;
+import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -17,54 +18,52 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-
 @Service
 @RequiredArgsConstructor
 public class AuthService {
-    private final UserRepository userRepository;
-    private final JwtService jwtService;
-    private final PasswordEncoder passwordEncoder;
-    private final AuthenticationManager authenticationManager;
+  private final UserRepository userRepository;
+  private final JwtService jwtService;
+  private final PasswordEncoder passwordEncoder;
+  private final AuthenticationManager authenticationManager;
 
-    public SignupRP signup(SignupRQ signupRQ) {
-        SignupRQ.UserCredential userCredentialRQ = signupRQ.getUserCredential();
+  public SignupRes signup(SignupReq signupReq) {
+    SignupReq.UserCredential userCredentialRQ = signupReq.getUserCredential();
 
-        User user = User.builder()
-                .fullName(signupRQ.getFullName())
-                .email(signupRQ.getEmail())
-                .phoneNumber(signupRQ.getPhoneNumber())
-                .address(signupRQ.getAddress())
-                .build();
+    User user =
+        User.builder()
+            .fullName(signupReq.getFullName())
+            .email(signupReq.getEmail())
+            .phoneNumber(signupReq.getPhoneNumber())
+            .address(signupReq.getAddress())
+            .build();
 
-        UserCredential userCredential = UserCredential.builder()
-                .username(userCredentialRQ.getUsername())
-                .password(passwordEncoder.encode(userCredentialRQ.getPassword()))
-                .build();
+    UserCredential userCredential =
+        UserCredential.builder()
+            .username(userCredentialRQ.getUsername())
+            .password(passwordEncoder.encode(userCredentialRQ.getPassword()))
+            .build();
 
-        user.setUserCredential(userCredential);
-        userCredential.setUser(user);
-        userRepository.save(user);
+    user.setUserCredential(userCredential);
+    userCredential.setUser(user);
+    userRepository.save(user);
 
-        return SignupRP.builder()
-                .username(userCredential.getUsername())
-                .build();
+    return SignupRes.builder().username(userCredential.getUsername()).build();
+  }
+
+  public LoginRes login(LoginReq loginReq) {
+    Authentication authentication =
+        authenticationManager.authenticate(
+            new UsernamePasswordAuthenticationToken(
+                loginReq.getUsername(), loginReq.getPassword()));
+    SecurityContextHolder.getContext().setAuthentication(authentication);
+    String token = jwtService.generateToken(authentication);
+    Optional<String> authority =
+        authentication.getAuthorities().stream().findFirst().map(GrantedAuthority::getAuthority);
+    if (authority.isEmpty()) {
+      throw new RuntimeException("Role not found");
     }
+    ERole role = ERole.valueOf(authority.get());
 
-    public LoginRP login(LoginRQ loginRQ) {
-        Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(loginRQ.getUsername(), loginRQ.getPassword())
-        );
-        SecurityContextHolder.getContext().setAuthentication(authentication);
-        String token = jwtService.generateToken(authentication);
-        Optional<String> authority = authentication.getAuthorities().stream()
-                .findFirst()
-                .map(GrantedAuthority::getAuthority);
-        ERole role = ERole.valueOf(authority.orElse(ERole.CUSTOMER.name()));
-
-        return LoginRP.builder()
-                .token(token)
-                .role(role)
-                .build();
-    }
+    return LoginRes.builder().token(token).role(role).build();
+  }
 }

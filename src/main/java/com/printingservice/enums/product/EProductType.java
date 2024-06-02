@@ -1,6 +1,6 @@
 package com.printingservice.enums.product;
 
 public enum EProductType {
-    PRE_DESIGNED,
-    REQUESTED
+  PRE_DESIGNED,
+  REQUESTED
 }

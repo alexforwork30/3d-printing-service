@@ -5,5 +5,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface PingRepository extends BaseRepository<Ping, Long> {
-    Ping findByMessage(String message);
+  Ping findByMessage(String message);
 }

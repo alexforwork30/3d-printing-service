@@ -1,9 +1,9 @@
 package com.printingservice.controllers;
 
-import com.printingservice.dtos.auth.request.LoginRQ;
-import com.printingservice.dtos.auth.request.SignupRQ;
-import com.printingservice.dtos.auth.response.LoginRP;
-import com.printingservice.dtos.auth.response.SignupRP;
+import com.printingservice.dtos.auth.request.LoginReq;
+import com.printingservice.dtos.auth.request.SignupReq;
+import com.printingservice.dtos.auth.response.LoginRes;
+import com.printingservice.dtos.auth.response.SignupRes;
 import com.printingservice.services.AuthService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -16,15 +16,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/auth")
 @RequiredArgsConstructor
 public class AuthController {
-    private final AuthService authService;
+  private final AuthService authService;
 
-    @PostMapping("/signup")
-    public SignupRP signup(@Valid @RequestBody SignupRQ signupRQ) {
-        return authService.signup(signupRQ);
-    }
+  @PostMapping("/signup")
+  public SignupRes signup(@Valid @RequestBody SignupReq signupReq) {
+    return authService.signup(signupReq);
+  }
 
-    @PostMapping("/login")
-    public LoginRP login(@Valid @RequestBody LoginRQ loginRQ) {
-        return authService.login(loginRQ);
-    }
+  @PostMapping("/login")
+  public LoginRes login(@Valid @RequestBody LoginReq loginReq) {
+    return authService.login(loginReq);
+  }
 }

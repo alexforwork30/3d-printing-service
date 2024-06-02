@@ -8,10 +8,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class LoginRQ {
-    @NotBlank
-    private String username;
-    
-    @NotBlank
-    private String password;
+public class LoginReq {
+  @NotBlank private String username;
+
+  @NotBlank private String password;
 }

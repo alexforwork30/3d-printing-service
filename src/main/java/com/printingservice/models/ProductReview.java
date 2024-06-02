@@ -15,20 +15,19 @@ import org.hibernate.annotations.OnDeleteAction;
 @Builder
 @EqualsAndHashCode(callSuper = true)
 public class ProductReview extends Base {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
 
-    @Column
-    private String review;
+  @Column private String review;
 
-    @Column(nullable = false)
-    @Min(1)
-    @Max(5)
-    private Integer rating;
+  @Column(nullable = false)
+  @Min(1)
+  @Max(5)
+  private Integer rating;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "product_id", nullable = false)
-    @OnDelete(action = OnDeleteAction.RESTRICT)
-    private Product product;
+  @ManyToOne(fetch = FetchType.LAZY, optional = false)
+  @JoinColumn(name = "product_id", nullable = false)
+  @OnDelete(action = OnDeleteAction.RESTRICT)
+  private Product product;
 }

@@ -7,5 +7,5 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class ProductOptionService {
-    private final ProductOptionRepository productOptionRepository;
+  private final ProductOptionRepository productOptionRepository;
 }
